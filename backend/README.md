@@ -2,7 +2,7 @@
 
 ### Ссылка на проект
 
-[Домен бэкенда] (https://api.barkhatos-movies.nomoredomainsmonster.ru)
+[Домен] (https://api.barkhatos-movies.nomoredomainsmonster.ru)
 
 [Репозиторий movies-explorer-api](https://github.com/BarhatYo/movies-explorer-api)
 
