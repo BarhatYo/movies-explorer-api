@@ -20,8 +20,8 @@ const validateAddMovie = celebrate({
     thumbNail: Joi.string().pattern(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,8})([/\w .-]*)*\/?$/).required(),
     owner: Joi.string().hex().length(24).required(),
     movieId: Joi.number().required(),
-    nameRU: Joi.string().required().pattern(/^[а-яё0-9]+$/i),
-    nameEN: Joi.string().required().pattern(/^[a-zA-Z0-9]+$/),
+    nameRU: Joi.string().required().pattern(/^[а-яё0-9\s]+$/i),
+    nameEN: Joi.string().required().pattern(/^[a-zA-Z0-9\s]+$/),
   }),
 });
 

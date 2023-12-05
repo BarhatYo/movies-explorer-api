@@ -4,7 +4,9 @@ const NotFound = require('../utils/NotFound');
 const Forbidden = require('../utils/Forbidden');
 
 const getMovies = (req, res, next) => {
-  Movie.find({})
+  const owner = req.user._id;
+
+  Movie.find({ owner })
     .then((movies) => {
       const formattedMovies = movies.map((movie) => ({
         _id: movie._id,
