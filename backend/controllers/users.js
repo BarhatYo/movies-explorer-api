@@ -4,6 +4,11 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const { CREATED, SUCCESS } = require('../constants/statusCodes');
+const {
+  USER_NOT_FOUND_MESSAGE,
+  USER_CONFLICT_MESSAGE,
+  USER_BAD_REQUEST_MESSAGE,
+} = require('../constants/errorMessages');
 
 const BadRequest = require('../utils/BadRequest');
 const Conflict = require('../utils/ConflictError');
@@ -15,7 +20,7 @@ const getProfile = (req, res, next) => {
   User.findById(userId)
     .then((user) => {
       if (!user) {
-        throw new NotFound('Нет пользователя с таким id');
+        throw new NotFound(USER_NOT_FOUND_MESSAGE);
       }
       res.send(
         {
@@ -48,7 +53,7 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        return next(new Conflict('Пользователь с таким email уже зарегистрирован'));
+        return next(new Conflict(USER_CONFLICT_MESSAGE));
       }
       return next(err);
     });
@@ -71,7 +76,7 @@ const updateUser = (req, res, next) => {
     ))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new BadRequest('Переданы некорректные данные в метод обновления профиля'));
+        return next(new BadRequest(USER_BAD_REQUEST_MESSAGE));
       }
       return next(err);
     });
