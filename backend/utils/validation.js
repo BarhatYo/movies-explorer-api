@@ -15,13 +15,12 @@ const validateAddMovie = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().pattern(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,8})([/\w .-]*)*\/?$/).required(),
-    trailerLink: Joi.string().pattern(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,8})([/\w .-]*)*\/?$/).required(),
-    thumbNail: Joi.string().pattern(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,8})([/\w .-]*)*\/?$/).required(),
-    owner: Joi.string().hex().length(24).required(),
+    image: Joi.string().pattern(/^https:\/\//).required(),
+    trailerLink: Joi.string().pattern(/^https:\/\//).required(),
+    thumbNail: Joi.string().pattern(/^https:\/\//).required(),
     movieId: Joi.number().required(),
-    nameRU: Joi.string().required().pattern(/^[а-яё0-9\s]+$/i),
-    nameEN: Joi.string().required().pattern(/^[a-zA-Z0-9\s]+$/),
+    nameRU: Joi.string().required().pattern(/^[а-яёa-zA-Z0-9\s\W]+$/iu),
+    nameEN: Joi.string().required().pattern(/^[а-яёa-zA-Z0-9\s\W]+$/iu),
   }),
 });
 
