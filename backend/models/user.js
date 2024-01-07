@@ -37,7 +37,7 @@ userSchema.statics.findUserByCredentials = function (email, password, next) {
       if (!user) {
         return next(new Unauthorized('Неправильные почта или пароль'));
       }
-      return bcrypt.compare(toString(password), user.password)
+      return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
             return next(new Unauthorized('Неправильные почта или пароль'));
