@@ -78,8 +78,8 @@ const updateUser = (req, res, next) => {
       })
     )
     .catch((err) => {
-      if (err.name === "ValidationError") {
-        return next(new BadRequest(USER_BAD_REQUEST_MESSAGE));
+      if (err.code === 11000) {
+        return next(new Conflict(USER_CONFLICT_MESSAGE));
       }
       if (err.name === "ValidationError") {
         return next(new BadRequest(USER_BAD_REQUEST_MESSAGE));
